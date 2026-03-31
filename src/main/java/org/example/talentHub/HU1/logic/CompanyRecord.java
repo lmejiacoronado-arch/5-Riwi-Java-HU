@@ -1,4 +1,4 @@
-package org.example.talentHub.logic;
+package org.example.talentHub.HU1.logic;
 
 /**
  * Task 2: Modern Data Modeling using Java 17/21 Records.

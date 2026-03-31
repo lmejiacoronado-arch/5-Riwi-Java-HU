@@ -1,4 +1,4 @@
-package org.example.talentHub.ModernDiagnostics;
+package org.example.talentHub.HU1.ModernDiagnostics;
 
 public record versions(String name, int age) {
 }

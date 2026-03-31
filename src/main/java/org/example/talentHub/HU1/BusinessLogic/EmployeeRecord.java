@@ -1,4 +1,4 @@
-package org.example.talentHub.BusinessLogic;
+package org.example.talentHub.HU1.BusinessLogic;
 
 public record EmployeeRecord(String name, int employeeId, double baseSalary, double monthlyBonus, int testScore, int age, int headquarterId, boolean isActive) {
 
