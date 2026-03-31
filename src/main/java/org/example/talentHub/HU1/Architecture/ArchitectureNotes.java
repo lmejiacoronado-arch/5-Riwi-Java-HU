@@ -1,4 +1,4 @@
-package org.example.talentHub.Architecture;
+package org.example.talentHub.HU1.Architecture;
 
 public class ArchitectureNotes {
     public static void main(String[] args) {
