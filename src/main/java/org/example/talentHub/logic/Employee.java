@@ -1,4 +1,4 @@
-package org.example.talentHub.HU1.logic;
+package org.example.talentHub.logic;
 
 /**
  * Task 2: Data Modeling for Corporate Talent Hub.
