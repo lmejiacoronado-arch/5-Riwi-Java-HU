@@ -1,10 +1,10 @@
-package org.example.talentHub.Matrix;
+package org.example.talentHub.Qualification;
 
 import java.util.Scanner;
 
 public class PerformanceMatrixProcessor {
 
-    public static void main(String[] args) {
+    public static void run() {
 
         Scanner scanner = new Scanner(System.in);
 

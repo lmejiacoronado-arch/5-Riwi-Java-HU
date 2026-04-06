@@ -1,11 +1,11 @@
-package org.example.talentHub.ExceptionAndValidation;
+package org.example.talentHub.Status;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ExceptionHandlingAndValidation {
 
-    public static void main(String[] args) {
+    public static void run() {
 
         Scanner scanner = new Scanner(System.in);
 

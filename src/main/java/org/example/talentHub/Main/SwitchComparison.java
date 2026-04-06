@@ -1,8 +1,8 @@
-package org.example.talentHub.Switch;
+package org.example.talentHub.Main;
 
-public class SwitchComparisonApp {
+public class SwitchComparison {
 
-    public static void main(String[] args) {
+    public static void run(String[] args) {
 
         int option = 1;
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserInputAndVarDemo {
 
-    public static void main(String[] args) {
+    public static void run() {
 
         Scanner scanner = new Scanner(System.in);
         int option;
@@ -45,9 +45,7 @@ public class UserInputAndVarDemo {
                  * var simplifies local variable declaration.
                  */
             }
-
         } while (option != 2);
-
         scanner.close();
     }
 }
