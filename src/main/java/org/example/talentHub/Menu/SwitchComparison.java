@@ -1,4 +1,4 @@
-package org.example.talentHub.Main;
+package org.example.talentHub.Menu;
 
 public class SwitchComparison {
 
