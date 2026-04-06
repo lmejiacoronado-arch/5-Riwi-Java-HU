@@ -1,9 +1,13 @@
-package org.example.talentHub.Main;
+package org.example.talentHub;
 
 import org.example.talentHub.Architecture.ArchitectureNotes;
 import org.example.talentHub.BusinessLogic.EmployeeRecord;
-import org.example.talentHub.logic.CompanyRecord;
+import org.example.talentHub.ExceptionAndValidation.ExceptionHandlingAndValidation;
+import org.example.talentHub.Matrix.PerformanceMatrixProcessor;
 import org.example.talentHub.ModernDiagnostics.versions;
+import org.example.talentHub.Switch.SwitchComparisonApp;
+import org.example.talentHub.UserInput.UserInputAndVarDemo;
+import org.example.talentHub.logic.CompanyRecord;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +15,7 @@ public class Main {
 
         // 1. DEMOSTRACIÓN DE ARQUITECTURA Y GC
         System.out.println("--- 1. Architecture & GC Notes ---");
-        ArchitectureNotes.main(new String[0]);
+        ArchitectureNotes.run(new String[0]);
         System.out.println();
 
         // 2. DEMOSTRACIÓN DE BUSINESS LOGIC CON RECORDS
@@ -34,10 +38,29 @@ public class Main {
         demonstrateEmployeePrimitives();
         System.out.println();
 
+        // 6. SWITCH COMPARISON (Java 8 vs Java 17+)
+        System.out.println("--- 6. Switch Comparison ---");
+        SwitchComparisonApp.run(new String[0]);
+        System.out.println();
+
+        // 7. EXCEPTION HANDLING & VALIDATION
+        System.out.println("--- 7. Exception Handling & Validation ---");
+        ExceptionHandlingAndValidation.run();
+        System.out.println();
+
+        // 8. PERFORMANCE MATRIX PROCESSOR
+        System.out.println("--- 8. Performance Matrix Processor ---");
+        PerformanceMatrixProcessor.run();
+        System.out.println();
+
+        // 9. USER INPUT & VAR DEMO
+        System.out.println("--- 9. UserInput & Var Demo ---");
+        UserInputAndVarDemo.run();
+        System.out.println();
+
         System.out.println("===== END OF ORCHESTRATION =====");
     }
 
-    // Método que reproduce la lógica del EmployeeRecord
     private static void demonstrateEmployeeRecord() {
         EmployeeRecord emp1 = new EmployeeRecord("Luis", 1, 8_000_000, 3_000_000, 82, 22, 3, false);
 
@@ -51,7 +74,6 @@ public class Main {
         // System.out.println("Name length: " + emp1.name().length());
     }
 
-    // Método que reproduce la lógica del CompanyRecord
     private static void demonstrateCompanyRecord() {
         CompanyRecord company1 = new CompanyRecord("Riwi", "1234-5", 2023);
 
@@ -70,19 +92,16 @@ public class Main {
         System.out.println("Company instantiated: " + company1.name() + " - " + company1.nit());
     }
 
-    // Método que demuestra la diferencia entre == y .equals()
     private static void demonstrateVersionsComparison() {
         versions emp1 = new versions("Luis", 22);
         versions emp2 = new versions("Luis", 22);
 
-        System.out.println("emp1 == emp2: " + (emp1 == emp2));      // false (Diferentes direcciones de memoria)
-        System.out.println("emp1.equals(emp2): " + emp1.equals(emp2)); // true (Mismo contenido)
+        System.out.println("emp1 == emp2: " + (emp1 == emp2));
+        System.out.println("emp1.equals(emp2): " + emp1.equals(emp2));
         System.out.println("Explanation: Records automatically override .equals() to compare field values.");
     }
 
-    // Método que demuestra la clase Employee con tipos primitivos
     private static void demonstrateEmployeePrimitives() {
-        // Creando una instancia de Employee con valores de ejemplo
         byte age = 28;
         short departmentCode = 101;
         int id = 1001;
@@ -93,7 +112,6 @@ public class Main {
         boolean isActive = true;
         String fullName = "Luis Carlos Rodríguez";
 
-        // Nota: La clase Employee no tiene getters públicos, así que solo mostramos que se instancia
         System.out.println("Employee instance created successfully!");
         System.out.printf("Sample data: %s (Initial: %c), Age: %d, Active: %b%n",
                 fullName, nameInitial, age, isActive);
