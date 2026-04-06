@@ -2,10 +2,10 @@ package org.example.talentHub;
 
 import org.example.talentHub.Architecture.ArchitectureNotes;
 import org.example.talentHub.BusinessLogic.EmployeeRecord;
-import org.example.talentHub.ExceptionAndValidation.ExceptionHandlingAndValidation;
-import org.example.talentHub.Matrix.PerformanceMatrixProcessor;
+import org.example.talentHub.Status.ExceptionHandlingAndValidation;
+import org.example.talentHub.Qualification.PerformanceMatrixProcessor;
 import org.example.talentHub.ModernDiagnostics.versions;
-import org.example.talentHub.Switch.SwitchComparisonApp;
+import org.example.talentHub.Maiin.SwitchComparison;
 import org.example.talentHub.UserInput.UserInputAndVarDemo;
 import org.example.talentHub.logic.CompanyRecord;
 
@@ -40,7 +40,7 @@ public class Main {
 
         // 6. SWITCH COMPARISON (Java 8 vs Java 17+)
         System.out.println("--- 6. Switch Comparison ---");
-        SwitchComparisonApp.run(new String[0]);
+        SwitchComparison.run(new String[0]);
         System.out.println();
 
         // 7. EXCEPTION HANDLING & VALIDATION
