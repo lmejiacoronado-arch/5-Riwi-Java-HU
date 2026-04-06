@@ -1,7 +1,8 @@
 package org.example.talentHub.Architecture;
 
 public class ArchitectureNotes {
-    public static void main(String[] args) {
+
+    public static void run(String[] args) {
 
         /* Main differences between Java 8 (Legacy) and Java 17/21 (Current LTS). */
 
@@ -39,7 +40,7 @@ public class ArchitectureNotes {
         """;
 
         System.out.println(keyDifferences);
-        
+
         /* How the JVM and Garbage Collector (GC) manage objects to optimize memory.*/
 
         String jvm = """
@@ -65,5 +66,5 @@ public class ArchitectureNotes {
         """;
 
         System.out.println(jvm);
-            }
-        }
+    }
+}
