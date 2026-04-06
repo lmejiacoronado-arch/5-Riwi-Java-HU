@@ -5,7 +5,7 @@ import org.example.talentHub.BusinessLogic.EmployeeRecord;
 import org.example.talentHub.Status.ExceptionHandlingAndValidation;
 import org.example.talentHub.Qualification.PerformanceMatrixProcessor;
 import org.example.talentHub.ModernDiagnostics.versions;
-import org.example.talentHub.Menu.SwitchComparison;
+import org.example.talentHub.Maiin.SwitchComparison;
 import org.example.talentHub.UserInput.UserInputAndVarDemo;
 import org.example.talentHub.logic.CompanyRecord;
 
