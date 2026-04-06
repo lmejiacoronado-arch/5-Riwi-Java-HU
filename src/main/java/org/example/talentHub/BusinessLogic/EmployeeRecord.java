@@ -29,20 +29,3 @@ public record EmployeeRecord(String name, int employeeId, double baseSalary, dou
         3. || (OR) -> Evaluates the final result between the two blocks.*/
     }
 }
-
-class Main {
-    public static void main(String[] args) {
-        EmployeeRecord emp1 = new EmployeeRecord("Luis", 1, 8_000_000, 3_000_000, 82, 22, 3, false);
-
-        System.out.println("--- Employee Report ---");
-        System.out.println("Name: " + emp1.name());
-        System.out.println("Final Salary: $" + emp1.calculateFinalSalary());
-        System.out.println("Extra Bonus (by even ID): $" + emp1.calculateExtraBonus());
-        System.out.println("Is eligible?: " + (emp1.validateEligibility() ? "Yes" : "No"));
-
-        System.out.println("Name length: " + emp1.name().length());
-        /*This print is to visualize the error; to do so, change 'Luis' in the constructor to null.
-          I added .length to operate with that null, because if I don't operate on it,
-          the error won't trigger even if the attribute is null.*/
-    }
-}
