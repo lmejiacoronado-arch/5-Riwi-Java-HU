@@ -2,7 +2,7 @@ package org.example.talentHub.Architecture;
 
 public class ArchitectureNotes {
 
-    public static void run(String[] args) {
+    public static void run() {
 
         /* Main differences between Java 8 (Legacy) and Java 17/21 (Current LTS). */
 
