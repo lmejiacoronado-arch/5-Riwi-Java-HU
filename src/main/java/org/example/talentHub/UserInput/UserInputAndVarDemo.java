@@ -2,11 +2,19 @@ package org.example.talentHub.UserInput;
 
 import java.util.Scanner;
 
+/**
+ * Task 2 - HU2: Dynamic data capture with do-while and type inference with 'var' (Java 11+).
+ *
+ * TYPE INFERENCE COMPARISON:
+ *   Java 8  → String name = scanner.nextLine();  (explicit type)
+ *   Java 11+ → var name = scanner.nextLine();     (compiler infers the type)
+ *
+ * IMPORTANT: 'var' is only valid for LOCAL variables.
+ * It cannot be used for class fields, method parameters, or return types.
+ */
 public class UserInputAndVarDemo {
 
-    public static void run() {
-
-        Scanner scanner = new Scanner(System.in);
+    public static void run(Scanner scanner) {
         int option;
 
         do {
@@ -18,44 +26,34 @@ public class UserInputAndVarDemo {
 
             if (option == 1) {
 
-                scanner.nextLine(); // clear buffer
+                scanner.nextLine(); // clear buffer after nextInt()
 
-                // ============================================================
-                // TASK 2 - Type inference with 'var' (Java 11+)
-                // Java 8   → String name = scanner.nextLine();
-                // Java 11+ → var name = scanner.nextLine();
-                // The compiler infers the type at compile time.
-                // 'var' is only valid for local variables, not for class
-                // fields, parameters, or return types.
-                // ============================================================
-
+                // Java 11+ var — compiler infers String
                 var name = "";
                 System.out.print("Enter employee name: ");
                 name = scanner.nextLine();
 
+                // Java 11+ var — compiler infers int
                 System.out.print("Enter employee age (0-120): ");
                 var age = scanner.nextInt();
 
-                // Java 8 → int salary = scanner.nextInt();
-                // Java 11+ → var salary = scanner.nextInt();
+                // Java 11+ var — compiler infers int
                 System.out.print("Enter employee salary: ");
                 var salary = scanner.nextInt();
 
+                // Java 11+ var — compiler infers int
                 System.out.print("Enter department code (1-999): ");
                 var departmentCode = scanner.nextInt();
 
+                // Java 11+ var — compiler infers int
                 System.out.print("Is the employee active? (1=Yes / 0=No): ");
                 var activeInput = scanner.nextInt();
 
-                // ============================================================
-                // TASK 2 - Validations with if / else
-                // Ranges defined according to the system's primitive types:
-                // age      → byte  (0 - 120)
-                // salary   → int   (> 0)
-                // deptCode → short (1 - 999)
-                // active   → boolean (1 or 0)
-                // ============================================================
-
+                // Validations with if / else — ranges based on primitive types:
+                // age          → byte    (0 - 120)
+                // salary       → int     (> 0)
+                // departmentCode → short (1 - 999)
+                // activeInput  → boolean (1 or 0)
                 if (name.isEmpty()) {
                     System.out.println(">> ERROR: Name cannot be empty.");
                 } else if (age < 0 || age > 120) {
@@ -65,7 +63,7 @@ public class UserInputAndVarDemo {
                 } else if (departmentCode < 1 || departmentCode > 999) {
                     System.out.println(">> ERROR: Department code must be between 1 and 999 (short range).");
                 } else if (activeInput != 0 && activeInput != 1) {
-                    System.out.println(">> ERROR: Active status must be 1 (Yes) or 0 (No) (boolean).");
+                    System.out.println(">> ERROR: Active status must be 1 (Yes) or 0 (No).");
                 } else {
                     boolean isActive = activeInput == 1;
                     System.out.println("\n>> Employee registered successfully!");
@@ -81,7 +79,5 @@ public class UserInputAndVarDemo {
             }
 
         } while (option != 2);
-
-        scanner.close();
     }
 }
