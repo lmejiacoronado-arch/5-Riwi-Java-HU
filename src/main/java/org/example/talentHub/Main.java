@@ -32,6 +32,28 @@ public class Main {
         System.out.println("--- 5. Employee Class (Primitive Types) ---");
         demonstrateEmployeePrimitives();
         System.out.println();
+
+        // 6. SWITCH COMPARISON (Java 8 vs Java 17+)
+        System.out.println("--- 6. Switch Comparison ---");
+        SwitchComparison.run(new String[0]);
+        System.out.println();
+
+        // 7. EXCEPTION HANDLING & VALIDATION
+        System.out.println("--- 7. Exception Handling & Validation ---");
+        ExceptionHandlingAndValidation.run();
+        System.out.println();
+
+        // 8. PERFORMANCE MATRIX PROCESSOR
+        System.out.println("--- 8. Performance Matrix Processor ---");
+        PerformanceMatrixProcessor.run();
+        System.out.println();
+
+        // 9. USER INPUT & VAR DEMO
+        System.out.println("--- 9. UserInput & Var Demo ---");
+        UserInputAndVarDemo.run();
+        System.out.println();
+
+        System.out.println("===== END OF ORCHESTRATION =====");
     }
 
     private static void demonstrateEmployeeRecord() {
