@@ -1,12 +1,7 @@
 package org.example.talentHub;
-
 import org.example.talentHub.Architecture.ArchitectureNotes;
 import org.example.talentHub.BusinessLogic.EmployeeRecord;
-import org.example.talentHub.Status.ExceptionHandlingAndValidation;
-import org.example.talentHub.Qualification.PerformanceMatrixProcessor;
-import org.example.talentHub.ModernDiagnostics.versions;
-import org.example.talentHub.Maiin.SwitchComparison;
-import org.example.talentHub.UserInput.UserInputAndVarDemo;
+import org.example.talentHub.ModernDiagnostics.Versions;
 import org.example.talentHub.logic.CompanyRecord;
 
 public class Main {
@@ -15,7 +10,7 @@ public class Main {
 
         // 1. DEMOSTRACIÓN DE ARQUITECTURA Y GC
         System.out.println("--- 1. Architecture & GC Notes ---");
-        ArchitectureNotes.run(new String[0]);
+        ArchitectureNotes.run();
         System.out.println();
 
         // 2. DEMOSTRACIÓN DE BUSINESS LOGIC CON RECORDS
@@ -93,8 +88,8 @@ public class Main {
     }
 
     private static void demonstrateVersionsComparison() {
-        versions emp1 = new versions("Luis", 22);
-        versions emp2 = new versions("Luis", 22);
+        Versions emp1 = new Versions("Luis", 22);
+        Versions emp2 = new Versions("Luis", 22);
 
         System.out.println("emp1 == emp2: " + (emp1 == emp2));
         System.out.println("emp1.equals(emp2): " + emp1.equals(emp2));

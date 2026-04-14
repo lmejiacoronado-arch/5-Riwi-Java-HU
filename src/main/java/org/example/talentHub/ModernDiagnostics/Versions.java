@@ -1,4 +1,4 @@
 package org.example.talentHub.ModernDiagnostics;
 
-public record versions(String name, int age) {
+public record Versions(String name, int age) {
 }
