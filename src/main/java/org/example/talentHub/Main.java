@@ -1,115 +1,139 @@
 package org.example.talentHub;
+
 import org.example.talentHub.Architecture.ArchitectureNotes;
 import org.example.talentHub.BusinessLogic.EmployeeRecord;
+import org.example.talentHub.Menu.SwitchComparison;
 import org.example.talentHub.ModernDiagnostics.Versions;
+import org.example.talentHub.Qualification.PerformanceMatrixProcessor;
+import org.example.talentHub.Status.ExceptionHandlingAndValidation;
+import org.example.talentHub.UserInput.UserInputAndVarDemo;
 import org.example.talentHub.logic.CompanyRecord;
+import org.example.talentHub.logic.Employee;
+import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+
         System.out.println("===== TALENT HUB ORCHESTRATOR =====\n");
 
-        // 1. DEMOSTRACIÓN DE ARQUITECTURA Y GC
+        // Single shared Scanner — never close it inside a module
+        Scanner scanner = new Scanner(System.in);
+
+        // ── HU1 ───────────────────────────────────────
+
         System.out.println("--- 1. Architecture & GC Notes ---");
         ArchitectureNotes.run();
         System.out.println();
 
-        // 2. DEMOSTRACIÓN DE BUSINESS LOGIC CON RECORDS
         System.out.println("--- 2. Business Logic: EmployeeRecord ---");
         demonstrateEmployeeRecord();
         System.out.println();
 
-        // 3. DEMOSTRACIÓN DE COMPANY RECORD
-        System.out.println("--- 3. CompanyRecord ---");
+        System.out.println("--- 3. CompanyRecord (Record vs POJO) ---");
         demonstrateCompanyRecord();
         System.out.println();
 
-        // 4. DEMOSTRACIÓN DE MODERN DIAGNOSTICS (== vs .equals())
         System.out.println("--- 4. Modern Diagnostics: == vs .equals() ---");
         demonstrateVersionsComparison();
         System.out.println();
 
-        // 5. DEMOSTRACIÓN DE CLASE EMPLOYEE (8 TIPOS PRIMITIVOS)
-        System.out.println("--- 5. Employee Class (Primitive Types) ---");
+        System.out.println("--- 5. Employee — All 8 Primitive Types + += ---");
         demonstrateEmployeePrimitives();
         System.out.println();
 
-        // 6. SWITCH COMPARISON (Java 8 vs Java 17+)
-        System.out.println("--- 6. Switch Comparison ---");
-        SwitchComparison.run(new String[0]);
+        // ── HU2 ───────────────────────────────────────
+
+        System.out.println("--- 6. Switch: Legacy (Java 8) vs Modern (Java 17+) ---");
+        SwitchComparison.run(scanner);
         System.out.println();
 
-        // 7. EXCEPTION HANDLING & VALIDATION
-        System.out.println("--- 7. Exception Handling & Validation ---");
-        ExceptionHandlingAndValidation.run();
+        System.out.println("--- 7. Exception Handling & Promotion Validation ---");
+        ExceptionHandlingAndValidation.run(scanner);
         System.out.println();
 
-        // 8. PERFORMANCE MATRIX PROCESSOR
-        System.out.println("--- 8. Performance Matrix Processor ---");
-        PerformanceMatrixProcessor.run();
+        System.out.println("--- 8. Performance Matrix (double[][], casting, ternary) ---");
+        PerformanceMatrixProcessor.run(scanner);
         System.out.println();
 
-        // 9. USER INPUT & VAR DEMO
-        System.out.println("--- 9. UserInput & Var Demo ---");
-        UserInputAndVarDemo.run();
+        System.out.println("--- 9. User Input & var Demo (Java 11+) ---");
+        UserInputAndVarDemo.run(scanner);
         System.out.println();
 
+        scanner.close();
         System.out.println("===== END OF ORCHESTRATION =====");
     }
 
+    // ── Helpers HU1 ───────────────────────────────
+
     private static void demonstrateEmployeeRecord() {
-        EmployeeRecord emp1 = new EmployeeRecord("Luis", 1, 8_000_000, 3_000_000, 82, 22, 3, false);
+        EmployeeRecord emp1 = new EmployeeRecord(
+                "Luis", 1, 8_000_000, 3_000_000, 82, 22, 3, false);
 
-        System.out.println("--- Employee Report ---");
-        System.out.println("Name: " + emp1.name());
-        System.out.println("Final Salary: $" + emp1.calculateFinalSalary());
-        System.out.println("Extra Bonus (by even ID): $" + emp1.calculateExtraBonus());
-        System.out.println("Is eligible?: " + (emp1.validateEligibility() ? "Yes" : "No"));
-
-        // Demostración del NullPointerException mejorado (opcional - descomentar para probar)
-        // System.out.println("Name length: " + emp1.name().length());
+        System.out.println("Name: "                   + emp1.name());
+        System.out.println("Final Salary: $"          + emp1.calculateFinalSalary());
+        System.out.println("Extra Bonus (even ID): $" + emp1.calculateExtraBonus());
+        System.out.println("Is eligible?: "
+                + (emp1.validateEligibility() ? "Yes" : "No"));
     }
 
     private static void demonstrateCompanyRecord() {
-        CompanyRecord company1 = new CompanyRecord("Riwi", "1234-5", 2023);
+        CompanyRecord company = new CompanyRecord("Riwi", "1234-5", 2023);
 
-        String verbosityComparison =
-                """
-                In Java 8 (POJOs), the process is longer because we must create the class, 
-                declare fields, and then write a constructor manually. This makes the code 
-                more verbose. 
-                
-                In contrast, with Records (Java 17+), everything is done in a single line. 
-                The class and its attributes are declared together, making the code 
-                concise and easier to read.
+        String verbosityComparison = """
+                Java 8 (POJO): requires declaring class, fields, constructor,
+                getters, setters, and toString manually — very verbose.
+
+                Java 17+ (Record): everything in one line. Fields, constructor,
+                getters, equals, hashCode, and toString are auto-generated.
+                Records are also IMMUTABLE by design — no setters allowed.
                 """;
 
         System.out.println(verbosityComparison);
-        System.out.println("Company instantiated: " + company1.name() + " - " + company1.nit());
+        System.out.println("Company: " + company.name()
+                + " | NIT: " + company.nit());
     }
 
     private static void demonstrateVersionsComparison() {
         Versions emp1 = new Versions("Luis", 22);
         Versions emp2 = new Versions("Luis", 22);
 
-        System.out.println("emp1 == emp2: " + (emp1 == emp2));
+        System.out.println("emp1 == emp2     : " + (emp1 == emp2));
         System.out.println("emp1.equals(emp2): " + emp1.equals(emp2));
-        System.out.println("Explanation: Records automatically override .equals() to compare field values.");
+        System.out.println(
+                "Explanation: == checks Heap references; .equals() checks field values.");
+
+        String nullName = null;
+        System.out.println("\n[Null assignment demo]");
+        System.out.println("nullName = " + nullName);
+        System.out.println(
+                "Java 14+ NPE: Cannot invoke \"String.length()\" because \"nullName\" is null");
+        System.out.println(
+                "Java 8  NPE : NullPointerException (no context — hard to debug)");
+        // System.out.println(nullName.length()); // uncomment to trigger Helpful NPE
     }
 
     private static void demonstrateEmployeePrimitives() {
-        byte age = 28;
-        short departmentCode = 101;
-        int id = 1001;
-        long annualSalary = 60_000_000L;
-        float bonus = 1_500_000f;
-        double deductions = 2_250_000;
-        char nameInitial = 'L';
-        boolean isActive = true;
-        String fullName = "Luis Carlos Rodríguez";
+        byte    age            = 28;
+        short   departmentCode = 101;
+        int     id             = 1001;
+        long    annualSalary   = 60_000_000L;
+        float   monthlyBonus   = 1_500_000f;
+        double  deductions     = 2_250_000.0;
+        char    nameInitial    = 'L';
+        boolean isActive       = true;
+        String  fullName       = "Luis Carlos Rodriguez";
 
-        System.out.println("Employee instance created successfully!");
-        System.out.printf("Sample data: %s (Initial: %c), Age: %d, Active: %b%n",
+        System.out.println("All 8 primitive types declared successfully.");
+        System.out.printf(
+                "Employee: %s (%c) | Age: %d | Active: %b%n",
                 fullName, nameInitial, age, isActive);
-        System.out.println("This class demonstrates all 8 primitive types in Java.");
+
+        monthlyBonus += 500_000f;
+        System.out.println("Monthly bonus after +=: $" + monthlyBonus);
+
+        Employee employee = new Employee(
+                age, departmentCode, id, annualSalary,
+                monthlyBonus, deductions, nameInitial, isActive, fullName);
     }
 }

@@ -2,29 +2,26 @@ package org.example.talentHub.Qualification;
 
 import java.util.Scanner;
 
+/**
+ * Task 3 - HU2: Multidimensional performance matrix with explicit casting.
+ *
+ * CASTING (double → int):
+ *   The decimal part is TRUNCATED (not rounded).
+ *   Example: 8.9 → 8 | 7.1 → 7
+ *   Useful for simplified score reports where only the integer value matters.
+ *   This is a data precision trade-off that must be documented.
+ */
 public class PerformanceMatrixProcessor {
 
-    public static void run() {
+    public static void run(Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        // ====================================================================
-        // TASK 3 - Performance matrix (double[][])
-        // Rows → employees | Columns → 3 quarters (Q1, Q2, Q3)
-        // ====================================================================
-
+        // Matrix: rows = employees, columns = 3 quarters (Q1, Q2, Q3)
         System.out.print("\nHow many employees do you want to evaluate? ");
         int numEmployees = scanner.nextInt();
 
-        // Matrix definition: [employees][3 quarters]
         double[][] performance = new double[numEmployees][3];
 
-        // ====================================================================
-        // TASK 3 - Nested for loops to fill the matrix
-        // Outer loop → iterates over each employee
-        // Inner loop → iterates over the 3 quarters of that employee
-        // ====================================================================
-
+        // Nested for loops — outer: each employee, inner: 3 quarters
         for (int i = 0; i < performance.length; i++) {
             System.out.println("\n--- Employee " + (i + 1) + " ---");
             for (int j = 0; j < performance[i].length; j++) {
@@ -32,10 +29,6 @@ public class PerformanceMatrixProcessor {
                 performance[i][j] = scanner.nextDouble();
             }
         }
-
-        // ====================================================================
-        // TASK 3 - Nested for loops to calculate averages and casting
-        // ====================================================================
 
         System.out.println("\n===== PERFORMANCE REPORT =====");
 
@@ -48,20 +41,17 @@ public class PerformanceMatrixProcessor {
 
             double average = sum / performance[i].length;
 
-            // ================================================================
-            // TASK 3 - Explicit casting: double → int
-            // The decimal part is lost (truncation, NOT rounding).
-            // Example: 8.9 → 8 | 7.1 → 7
-            // Useful for reports where only the integer score matters.
-            // ================================================================
+            // Explicit casting: double → int (truncates decimal part)
             int simplifiedScore = (int) average;
+
+            // Ternary operator — Task 4: promotion decision based on average
+            String promotionStatus = (average >= 7.0) ? "PROMOTED" : "NOT PROMOTED";
 
             System.out.println("Employee " + (i + 1) + ":");
             System.out.println("  Average score    (double): " + average);
             System.out.println("  Simplified score (int)   : " + simplifiedScore
                     + "  <- casting truncates decimals");
+            System.out.println("  Promotion status         : " + promotionStatus);
         }
-
-        scanner.close();
     }
 }
