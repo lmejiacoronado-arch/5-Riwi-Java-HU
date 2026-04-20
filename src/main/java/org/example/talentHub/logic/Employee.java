@@ -30,4 +30,7 @@ public class Employee {
         this.isActive = isActive;
         this.fullName = fullName;
     }
+
+    public float getMonthlyBonus()            { return bonus; }
+    public void  setMonthlyBonus(float bonus) { this.bonus = bonus; }
 }

@@ -1,4 +1,4 @@
-package org.example.talentHub.HU4.interfaces;
+package org.example.talentHub.Interfaces;
 
 /**
  * Task 4 - HU4: Interface defining the promotion behavior contract.
