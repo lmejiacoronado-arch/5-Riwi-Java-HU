@@ -1,63 +1,145 @@
-Corporate Talent Hub - Module 1: Java Fundamentals (HU1)
-Project Overview
+# Corporate Talent Hub
 
-This project is part of the Software Development and Cybersecurity bootcamp. The main goal of this User Story (HU1) is to establish the architectural foundations and core logic for a Talent Management System using Java 21.
+Proyecto académico desarrollado en Java como evolución progresiva semanal, integrando conceptos desde arquitectura base hasta persistencia relacional con JDBC bajo patrón MVC.
 
-The project covers fundamental concepts such as JVM architecture, data modeling (POJOs vs Records), memory management (Stack vs Heap), and modern error handling.
-Tasks Completed
-Task 1: Architecture and JVM Theory
+## Tecnologías utilizadas
 
-    Analysis of the Java Virtual Machine (JVM), JRE, and JDK.
+* Java 21
+* Maven
+* SQLite
+* JDBC
+* IntelliJ IDEA
 
-    Understanding the compilation process: from .java source code to .class bytecode.
+## Estructura del proyecto
 
-    Setup of the development environment in Debian Linux using VS Code.
+com.riwi.talent
 
-Task 2: Data Modeling & 8 Primitive Types
+* model
+  Contiene entidades, records, DAO y lógica de persistencia.
 
-    Implementation of the Employee class using all 8 primitive types (byte, short, int, long, float, double, char, boolean) and String.
+* controller
+  Contiene controladores que median entre vista y modelo.
 
-    Comparison between Legacy Java (POJOs) and Modern Java (Records).
+* view
+  Contiene la interacción por consola y flujo principal del sistema.
 
-    Demonstration of verbosity vs. conciseness in data structures.
+## Arquitectura aplicada
 
-Task 3: Business Logic & Operators
+El proyecto fue refactorizado bajo patrón MVC para separar responsabilidades:
 
-    Calculation of final salaries and bonuses using Arithmetic Operators (+, -, *, /, %).
+* Modelo: representa datos y acceso a base de datos.
+* Vista: captura entradas del usuario mediante Scanner.
+* Controlador: recibe datos de la vista y coordina operaciones del modelo.
 
-    Implementation of eligibility rules using Relational (>, <) and Logical Operators (&&, ||, !).
+## Evolución por semanas
 
-    Analysis of Operator Precedence to ensure mathematical accuracy.
+### Semana 1
 
-Task 4: Memory Management & Diagnostics
+* Uso de los 8 tipos primitivos.
+* Comparación entre clase tradicional y Record.
+* Text Blocks.
+* Operadores aritméticos y lógicos.
+* Notas sobre JVM y Garbage Collector.
 
-    Stack vs Heap: Analysis of object equality using == (reference) and .equals() (content).
+### Semana 2
 
-    Helpful NullPointerExceptions: Practical experiment triggering an NPE to demonstrate how Java 21 identifies the specific null source, reducing debugging time.
+* Switch tradicional y Switch Expression.
+* Scanner con validaciones.
+* Matrices bidimensionales.
+* Casting explícito.
+* Manejo de excepciones.
 
-Technical Stack
+### Semana 3
 
-    Language: Java 21 (LTS)
+* ArrayList y HashMap.
+* List.of() y Map.of().
+* Sequenced Collections de Java 21.
+* removeIf().
+* Reportes con colecciones dinámicas.
 
-    Build Tool: Maven
+### Semana 4
 
-    Environment: Debian GNU/Linux
+* Sealed Classes.
+* Records.
+* Herencia y polimorfismo.
+* Pattern Matching for instanceof.
+* Interfaces con métodos default.
 
-    IDE: IntelliJ IDEA / VS Code
+### Semana 5
 
-    Version Control: Git & GitHub
+* Persistencia relacional con SQLite.
+* JDBC con try-with-resources.
+* CRUD completo.
+* DAO pattern.
+* PreparedStatement.
+* Integración MVC completa.
+* Records aplicados a reportes de consulta.
 
-Key Takeaways
-Equality Comparison
+## Base de datos
 
-    "In Java, == compares the memory address (the container), while .equals() compares the actual data (the content). Records automate this process, making them more efficient for DTOs."
+El sistema utiliza SQLite y genera automáticamente:
 
-Modern Debugging
+talent_hub.db
 
-    "Java 21's Helpful NullPointerExceptions are a game-changer for developers, pinpointing exactly where a null value was invoked, which was not possible in Java 8."
+Tabla principal:
 
-How to Run??
+employees
 
-To compile and run any task from the terminal, use:
+Campos:
 
-javac org/example/talentHub/(**Dirname**)/(**FileName.java**) && java org.example.talentHub.(**Dirname**).Main
+* id
+* full_name
+* email
+* role
+* base_salary
+* score
+
+## CRUD implementado
+
+* Crear empleado
+* Listar empleados
+* Actualizar empleado
+* Eliminar empleado
+
+## Seguridad aplicada
+
+Todas las consultas SQL usan PreparedStatement para prevenir SQL Injection.
+
+## Gestión moderna de recursos
+
+Se usa try-with-resources para:
+
+* Connection
+* PreparedStatement
+* ResultSet
+
+Esto evita fugas de memoria al cerrar automáticamente recursos JDBC.
+
+## Record utilizado
+
+EmployeeReport
+
+Se utiliza para construir reportes inmutables desde consultas SQL.
+
+## Cómo ejecutar
+
+### Desde IntelliJ
+
+Abrir el proyecto y ejecutar:
+
+com.riwi.talent.view.ApplicationView
+
+### Desde terminal
+
+mvn clean install
+
+mvn exec:java -Dexec.mainClass="com.riwi.talent.view.ApplicationView"
+
+## Requisitos
+
+* Java 21 configurado
+* Maven instalado
+
+## Autor
+
+Proyecto desarrollado para Riwi como ejercicio progresivo de arquitectura Java moderna comparando prácticas Legacy (Java 8) y modernas (Java 17/21).
